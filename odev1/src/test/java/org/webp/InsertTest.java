@@ -48,25 +48,53 @@ public class InsertTest {
         return true;
     }
 
-
     @Test
-    public void insertMovie() {
+    public void testEmptyProjectManager(){
 
-        MovieDetails movie = new MovieDetails();
-        movie.setId(1L);
+        ProjectManager manager = new ProjectManager();
+        assertTrue(persistInATransaction(manager));
+    }
+    @Test
+    public void testEmptyCategory(){
 
-        boolean persisted = persistInATransaction(movie);
+        Category category = new Category();
+        assertTrue(persistInATransaction(category));
+    }
+    @Test
+    public void testEmptyProject(){
+
+        Project project = new Project();
+
+        assertTrue(persistInATransaction(project));
+    }
+    @Test
+    public void insertManager() {
+
+        ProjectManager manager = new ProjectManager();
+        manager.setName("oguzhan");
+
+        boolean persisted = persistInATransaction(manager);
+        assertTrue(persisted);
+    }
+    @Test
+    public void insertCategory() {
+
+        Category category = new Category();
+        category.setCategoryName("Web");
+
+        boolean persisted = persistInATransaction(category);
+        assertTrue(persisted);
+    }
+    @Test
+    public void insertProject() {
+
+        Project project = new Project();
+        project.setProjectName("Jenkins");
+
+        boolean persisted = persistInATransaction(project);
         assertTrue(persisted);
     }
 
-    @Test
-    public void insertSong() {
 
-        Song song = new Song();
-        song.setId(2L);
-
-        boolean persisted = persistInATransaction(song);
-        assertTrue(persisted); // "Song" adında bir tablo yok
-    }
 
 }
