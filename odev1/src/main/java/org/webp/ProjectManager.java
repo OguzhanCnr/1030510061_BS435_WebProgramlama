@@ -3,10 +3,13 @@ package org.webp;
 import javax.persistence.*;
 
 @Entity
+
+@Table(name = "projectManagers")
 public class ProjectManager {
 
     @Id
-    @GeneratedValue
+
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

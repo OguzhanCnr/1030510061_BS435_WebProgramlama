@@ -1,25 +1,25 @@
 package org.webp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "projects")
 public class Project {
 
     @Id
-    @GeneratedValue
+
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String projectName;
+
     private String description;
 
     @OneToOne
     private ProjectManager projectManager;
 
     @ManyToOne
+    @JoinColumn(name ="categoryId")
     private Category category;
 
     public Project(){}
