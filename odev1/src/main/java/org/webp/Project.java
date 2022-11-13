@@ -1,18 +1,17 @@
 package org.webp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "projects")
 public class Project {
 
     @Id
-
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Size(min = 2 , max = 128)
     private String projectName;
-
+    @Size(min = 2 , max = 128)
     private String description;
 
     @OneToOne
@@ -28,9 +27,6 @@ public class Project {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getProjectName() {
         return projectName;

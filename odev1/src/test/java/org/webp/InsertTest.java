@@ -32,41 +32,23 @@ public class InsertTest {
         factory.close();
     }
 
-    private boolean persistInATransaction(Object obj) {
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
+private boolean persistInATransaction(Object... obj) {
+    EntityTransaction tx = em.getTransaction();
+    tx.begin();
 
-        try {
-            em.persist(obj);
-            tx.commit();
-        } catch (Exception e) {
-            System.out.println("FAILED TRANSACTION: " + e.toString());
-            tx.rollback();
-            return false;
+    try {
+        for(Object o : obj) {
+            em.persist(o);
         }
-
-        return true;
+        tx.commit();
+    } catch (Exception e) {
+        System.out.println("FAILED TRANSACTION: " + e.toString());
+        tx.rollback();
+        return false;
     }
 
-    @Test
-    public void testEmptyProjectManager(){
-
-        ProjectManager manager = new ProjectManager();
-        assertTrue(persistInATransaction(manager));
-    }
-    @Test
-    public void testEmptyCategory(){
-
-        Category category = new Category();
-        assertTrue(persistInATransaction(category));
-    }
-    @Test
-    public void testEmptyProject(){
-
-        Project project = new Project();
-
-        assertTrue(persistInATransaction(project));
-    }
+    return true;
+}
     @Test
     public void insertManager() {
 

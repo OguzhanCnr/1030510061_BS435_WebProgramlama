@@ -1,17 +1,18 @@
 package org.webp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "categories")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(min = 2 , max = 128)
     private String categoryName;
     @OneToMany(mappedBy = "category")
     private List<Project> project = new ArrayList<>();
@@ -22,9 +23,6 @@ public class Category {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCategoryName() {
         return categoryName;
