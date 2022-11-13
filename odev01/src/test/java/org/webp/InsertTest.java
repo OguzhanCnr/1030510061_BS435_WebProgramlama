@@ -19,15 +19,14 @@ public class InsertTest {
 
     @BeforeEach
     public void init() {
-        //her bir test calismadan once BeforeEach calistirilir
+
         factory = Persistence.createEntityManagerFactory("Hibernate");
         em = factory.createEntityManager();
     }
 
     @AfterEach
     public void tearDown() {
-        //her bir test calistiktan sonra BeforeEach calistirilir
-
+        
         em.close();
         factory.close();
     }
